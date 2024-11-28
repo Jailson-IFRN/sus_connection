@@ -1,0 +1,73 @@
+{% extends 'pagina_de_usuario.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastro de UBS</title>
+        <link href="{% static 'img/ICON.png' %}" rel="icon">
+        <link href="{% static 'img/ICON.png' %}" rel="apple-touch-icon">
+    </head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'inicio' %}">
+        <img src="{% static 'img/ICON.png' %}" alt="logohospital" width="30" height="30"> SUS-CONNECTION</a>
+</nav>
+{% block 'dashboard2' %}
+    <main id="main" class="main">
+        <div class="container mt-4">
+            <h1 class="text-center">Registrar sua dúvida</h1>
+            <br>
+            <br>
+                    <div class="container">
+                            <form action="" method="post" role="form" class="php-email-form" enctype="multipart/form-data">
+                              {% csrf_token %}
+                              <div class="row">
+                              </div>
+                              <div class="form-group mt-3">
+                                <input type="file" class="form-control" name="foto_imagem">
+                              </div>
+                              <div class="form-group mt-3">
+                                <textarea class="form-control" name="message" rows="7" placeholder="Menssagem" required=""></textarea>
+                              </div>
+                              <br>
+                            <br>
+                    <br>
+                    <br>
+                              <span class="password-toggle" onclick="togglePasswordVisibility()">
+                                <i id="passwordIcon" class="fas fa-eye-slash"></i>
+                                <input type="submit" class="btn btn-primary" value="Registrar">
+                            
+                            </span>
+                            </form>
+                    </div>
+                    <table class="table table-striped">
+                      <tr>
+                          <th scope="col">Dúvida</th>
+                          <th scope="col">Data e hora</th>
+                          <th scope="col">Usuário</th>
+                      </tr>
+                      {% for x in duvidas %}
+                      <tr>
+                          <td>{{ x.duvida }}</td>
+                          <td>{{ x.criadoin }}</td>
+                          <td><a href="{% url 'ler' x.id %}">Respostas</a></td>
+                      </tr>
+                      {% empty %}
+                        <tr>
+                          Sem dúvidas cadastradas!
+                        </tr>
+                      {% endfor %}
+                    
+
+                </div>
+            </form>
+        </div>
+    </main>
+{% block 'noticias' %}
+{% endblock %}
+{% endblock %}
+{% block 'footer' %}
+{% endblock %}
+</html>

@@ -1,0 +1,77 @@
+{% extends 'pagina_de_usuario.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar</title>
+    <link href="{% static 'img/ICON.png' %}" rel="icon">
+    <link href="{% static 'img/ICON.png' %}" rel="apple-touch-icon">
+</head>
+<body>
+{% block 'dashboard2' %}
+    <main id="main" class="main">
+        <div class="container mt-4">
+            <h1 class="text-center">Lista de notícias registradas</h1>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Destaque</th>
+                    </tr>
+                    {% for noticias in object_list %}
+                    <tr>
+                        <td>{{ noticias.titulo }}</td>
+                        <td ><img src="/media/{{ noticias.imagem }}" style="width: 400px; height: 200px;"></td>
+                    {% if noticias.destaque == True %}
+                        <td><input type="checkbox" checked> </td>
+                    {% else %}
+                        <td><input type="checkbox"></td>
+                    {% endif %}
+                    </tr>
+                    <tr>
+                    </tr>
+                    {% empty %}
+                    {% endfor %}
+                </table>
+                <div class="text-center">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                            {% if request.GET.nome %}
+                                {% if page_obj.has_previous == 1 %}
+                                <li class="page-item"><a href="?page=1&nome={{request.GET.nome}}" class="page-link"> <<< Primeira </a></li>
+                                {% endif %}
+                                <li class="page-item"><a href="?page={{page_obj.previous_page_number}}&nome={{request.GET.nome}}" class="page-link"> << Anterior</a></li>
+                            {% else %}
+                                <li class="page-item"><a href="?page=1" class="page-link"> <<< Primeira</a></li>
+                                <li class="page-item"><a href="?page={{page_obj.previous_page_number}}" class="page-link"> << Anterior</a></li>
+                            {% endif %}
+                        {% endif %}
+                        <br>
+                        <li class="page-item" ><span class="page-link">Página: {{page_obj.number}} de {{ page_obj.paginator.num_pages }}.</span></li>
+                        <br>
+                        {% if page_obj.has_next %}
+                            {% if request.GET.nome %}
+                                <li class="page-item"><a href="?page={{ page_obj.next_page_number }}&nome={{request.GET.nome}}" class="page-link"> Próxima >> </a></li>
+                                <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}&nome={{request.GET.nome}}" class="page-link"> Última >> </a></li>
+                            {% else %}
+                                <li class="page-item"><a href="?page={{ page_obj.next_page_number }}&nome={{request.GET.nome}}" class="page-link">  Próxima >></a></li>
+                                <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">  Última >>> </a></li>
+                            {% endif %}
+                        {% endif %}
+                    
+                    </ul>   
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block 'noticias' %}
+{% endblock %}
+{% block 'footer' %}
+{% endblock %}     
+</body>
+</html>

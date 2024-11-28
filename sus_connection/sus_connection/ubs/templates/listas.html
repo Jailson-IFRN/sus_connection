@@ -1,0 +1,92 @@
+{% extends 'pagina_de_usuario.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar</title>
+    <link href="{% static 'img/ICON.png' %}" rel="icon">
+    <link href="{% static 'img/ICON.png' %}" rel="apple-touch-icon">
+</head>
+<body>
+{% block 'dashboard2' %}
+    <main id="main" class="main">
+    <form method="get">{% csrf_token %}
+        <input type="text" name="nome">
+        <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+          </svg></button>
+          <button class="btn btn-primary" ><a href="{% url 'listar-Ubs' %}" style="color: black;" >Limpar</a></button>
+    </form>
+    
+        <div class="container mt-4">
+            <h1 class="text-center">Lista de UBSs Registradas</h1>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                    {% for Ubs in object_list %}
+                    <tr>
+                        <td>{{ Ubs.nome }}</td>
+                        <td ><img src="/media/{{ Ubs.foto }}" style="width: 400px; height: 200px;"></td>
+                        <td>
+                            <br>
+                            <br>
+                            <br>
+                            {% if user.groups.all.0.name == "funcionários" %}
+                                <a href="{% url 'editar-Ubs' Ubs.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="{% url 'excluir-Ubs' Ubs.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                            {% else %}
+                                <a href="{% url 'detalhes' Ubs.pk %}" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/> </svg></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    {% empty %}
+                    {% endfor %}
+                </table>
+                <div class="text-center">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                            {% if request.GET.nome %}
+                                {% if page_obj.has_previous == 1 %}
+                                <li class="page-item"><a href="?page=1&nome={{request.GET.nome}}" class="page-link"> <<< Primeira </a></li>
+                                {% endif %}
+                                <li class="page-item"><a href="?page={{page_obj.previous_page_number}}&nome={{request.GET.nome}}" class="page-link"> << Anterior</a></li>
+                            {% else %}
+                                <li class="page-item"><a href="?page=1" class="page-link"> <<< Primeira</a></li>
+                                <li class="page-item"><a href="?page={{page_obj.previous_page_number}}" class="page-link"> << Anterior</a></li>
+                            {% endif %}
+                        {% endif %}
+                        <br>
+                        <li class="page-item" ><span class="page-link">Página: {{page_obj.number}} de {{ page_obj.paginator.num_pages }}.</span></li>
+                        <br>
+                        {% if page_obj.has_next %}
+                            {% if request.GET.nome %}
+                                <li class="page-item"><a href="?page={{ page_obj.next_page_number }}&nome={{request.GET.nome}}" class="page-link"> Próxima >> </a></li>
+                                <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}&nome={{request.GET.nome}}" class="page-link"> Última >> </a></li>
+                            {% else %}
+                                <li class="page-item"><a href="?page={{ page_obj.next_page_number }}&nome={{request.GET.nome}}" class="page-link">  Próxima >></a></li>
+                                <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">  Última >>> </a></li>
+                            {% endif %}
+                        {% endif %}
+                    
+                    </ul>   
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block 'noticias' %}
+{% endblock %}
+{% block 'footer' %}
+{% endblock %}     
+</body>
+</html>

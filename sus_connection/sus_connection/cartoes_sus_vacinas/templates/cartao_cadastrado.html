@@ -1,0 +1,46 @@
+{% extends 'pagina_de_usuario.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/ICON.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'js_css_upload/styleuplsus.css' %}" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="scriptuplsus.js"></script>
+    <title>SUS-CONNECTION - Upload de Cartão</title>
+    <link rel="stylesheet" href="{% static 'js_css_upload/styleuplsus.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'inicio' %}"><img src="{% static 'img/ICON.png' %}" alt="logohospital" width="30" height="30"> SUS-CONNECTION</a>
+    </nav>
+    {% block 'dashboard2' %}
+    <main id="main" class="main">
+        {% if cartao == 'Você não cadastrou seu cartão do SUS por enquanto!' %}
+        <div id="image_container" class="mt-4">
+            <h2 class="text-center">Cartão carregado </h2>
+            <div id="sus_cartao_image">{{ cartao }}</div>
+        </div>
+        {% else %}
+        <div id="image_container" class="mt-4">
+            <h2 class="text-center">Cartão carregado </h2>
+            <div id="sus_cartao_image"><img src="/media/{{ cartao.cartaoSus }}"></div>
+        </div>
+        {% endif %}
+                    
+            
+        </div>
+    </main>
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% block 'noticias' %}
+    {% endblock %}
+    {% block 'footer' %}
+    {% endblock %}
+</body>
+</html>

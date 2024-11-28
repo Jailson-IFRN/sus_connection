@@ -1,0 +1,48 @@
+{% extends 'pagina_de_usuario.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastro de UBS</title>
+        <link href="{% static 'img/ICON.png' %}" rel="icon">
+        <link href="{% static 'img/ICON.png' %}" rel="apple-touch-icon">
+    </head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'inicio' %}">
+        <img src="{% static 'img/ICON.png' %}" alt="logohospital" width="30" height="30"> SUS-CONNECTION</a>
+</nav>
+{% block 'dashboard2' %}
+    <main id="main" class="main">
+        <div class="container mt-4">
+            <h1 class="text-center">Informe os seus dados a seguir</h1>
+            <form  class="mt-4" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+            
+                <div class="password-container">
+                    <br>
+                    <br>
+                    {{ form|crispy }}
+                    <br>
+                    <br>
+                    <span class="password-toggle" onclick="togglePasswordVisibility()">
+                        <i id="passwordIcon" class="fas fa-eye-slash"></i>
+                        <input type="submit" class="btn btn-primary" value="Cadastrar">
+                    <br>
+                    </span>
+                </div>
+            
+            </form>
+            
+        </div>
+    </main>
+{% block 'noticias' %}
+{% endblock %}
+{% endblock %}
+{% block 'footer' %}
+{% endblock %}
+
+</html>

@@ -1,0 +1,15 @@
+
+img {
+    max-width: 100%; /* Certifica-se de que a imagem não ultrapasse a largura máxima do contêiner */
+    height: auto; /* Faz com que a altura da imagem seja ajustada automaticamente de acordo com a largura */
+    margin-top: -60px; /* Adiciona margem superior à imagem para movê-la para baixo */
+    margin-bottom: -90px;
+}
+
+@media (max-width: 380px) {
+    img {
+      display: none;
+    }
+  }
+
+ 

@@ -1,0 +1,290 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>SUS Connection - Bom Jesus/RN</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="{% static 'img/ICON.png' %}" rel="icon">
+  <link href="{% static 'img/ICON.png' %}" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="{% static 'css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-icons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css_index/bootstrap-icons.scss' %}" rel="stylesheet">
+  <link href="{% static 'css_index/bootstrap-icons.json' %}" rel="stylesheet">
+  <link href="{% static 'css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-icons.woff2' %}" >
+  <link href="{% static 'css/bootstrap-icons.woff' %}" >
+  <link href="{% static 'css/brands.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css_index/fa-regular-400.ttf' %}" >
+  <link href="{% static 'css_js_detalhes\style.css' %}" rel="stylesheet">
+  <link href="{% static 'css\style.css' %}" rel="stylesheet">
+</head>
+<body>
+{% block navbar %}
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center andando">
+      <a href="{% url 'inicio' %}" class="logo me-auto"><img src="{% static 'img/Logo-Sus-Connection1.png' %}" alt="250px"></a>
+        <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto " href="#featured-services">Informações</a></li>
+          <li><a class="nav-link scrollto" href="#about">UBS´s</a></li>
+          <li><a class="nav-link scrollto" href="#services">Serviços</a></li>
+          <li><a class="nav-link scrollto" href="#doctors">Desenvolvedores</a></li>
+        </ul>
+        <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-list mobile-nav-toggle" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+      </nav>
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="appointment-btn scrollto"><span class="d-none d-md-inline">SAIR</a>
+      {% else %}
+        <a href="{% url 'registrar' %}" class="appointment-btn scrollto"><span class="d-none d-md-inline">LOGIN/CADASTRO</a>
+      {% endif %}
+    </div>
+  </header>
+{% endblock %}
+    <section id="hero">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+        <div class="carousel-inner" role="listbox">
+          {% for not in noticias %}
+            {% if not.destaque == True %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}" style="background-image: url('/media/{{ not.imagem }}')">
+              <div class="container">
+                <div class="title-container">
+                  <h2 class="title"><span>{{ not.titulo }}</span></h2>
+                  <p class="body-paragraph">{{ not.body }}</p>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+            </svg>
+          </span>
+        </a>
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </section>
+  <main id="main">
+    <section id="featured-services" class="featured-services">
+      <div class="section-title"><h2>O QUE é O SUS-CONNECTION ?</h2>
+        <p>O SUS - Connection é um sistema de gerenciamento de Unidades Básicas de Saúde vinculadas ao Sistema Único de Saúde (SUS) da cidade de Bom Jesus/RN, assim como de acompanhamento e acesso à informação dos serviços de saúde da cidade. Essa aplicação foi desenvolvida por uma equipe de alunos do Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte - Campus São Paulo do Potengi a partir da disciplina nomeada "Projeto Integrador". Seja bem-vindo(a) ao aplicativo web SUS - Connection!</p>
+      </div>
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-right-text" viewBox="0 0 16 16">
+                <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+              </svg></div>
+              <h4 class="title"><a href="">Comunicação Aprimorada </a></h4>
+              <p class="description">O sistema possibilita uma comunicação mais eficiente entre pacientes e funcionários das Unidades, facilitando o acesso a informações relevantes e o contato mais direto com a equipe de saúde. Tudo isso sem precisar se locomover até ao centro de atendimento.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+              </svg></div>
+              <h4 class="title"><a href="">Acesso a Informações Importantes </a></h4>
+              <p class="description">Pacientes podem visualizar informações sobre as UBSs, como localização e horários de funcionamento, obter detalhes sobre os funcionários que atuam em cada posto de saúde e serviços ofertados. Além de acompanhar notícias/informes cadastradas sobre o seu posto de saúde. </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
+                <path d="M8.5 4.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L7 6l-.549.317a.5.5 0 1 0 .5.866l.549-.317V7.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L9 6l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V4.5zM5.5 9a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                <path d="M2 2a2 2 0 0 1 2-2ba2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1ba1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+              </svg></div>
+              <h4 class="title"><a href="">Vacinas</a></h4>
+              <p class="description">Os pacientes têm acesso às vacinas que estão disponíveis nas UBSs da cidade. Além disso, podem cadastrar o seu Cartão Nacional de Saúde (Cartão do SUS). Então, já sabe! Esqueceu o Cartão do SUS em casa? Acesse o SUS - Connection! </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16">
+                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+                <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
+              </svg></div>
+              <h4 class="title"><a href="">Cadastro e Login de Usuários</a></h4>
+              <p class="description">O sistema possui um cadastro e login de usuários, diferenciando entre pacientes e funcionários. Isso permite que cada grupo acesse as funcionalidades específicas do sistema de acordo com seu perfil.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="about" class="about">
+    <section id="counts" class="counts">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title"><h2>UNIDADES BÁSICAS DE SAÚDE</h2></div>
+        <div class="row no-gutters">
+          {% for ubs in UBS %} 
+          <div class="ubs col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-hospital" viewBox="0 0 16 16">
+                <path d="M8.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1h1ZM13.25 9a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Zm.25 1.75a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5Zm-11-4a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5A.25.25 0 0 0 3 9.75v-.5A.25.25 0 0 0 2.75 9h-.5Zm0 2a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Z"/>
+                <path d="M5 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 1 1v4h3a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1V1Zm2 14h2v-3H7v3Zm3 0h1V3H5v12h1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3Zm0-14H6v1h4V1Zm2 7v7h3V8h-3Zm-8 7V8H1v7h3Z"/>
+              </svg>
+              <p><b>{{ ubs.nome }}</b> <br> {{ ubs.rua }} - {{ ubs.numero }}</p>
+              <br>
+              <div class="ubs-buttons">
+                <button class="btn btn-3"><a class="nav-link scrollto" href="{% url 'detalhes' ubs.id %}">DETALHES</a></button>
+              </div>
+            </div>
+          </div>
+         {% endfor %} 
+        </div>
+      </div>
+    </section>
+    </section>
+      <section id="services" class="services services">
+        <div class="container" data-aos="fade-up">
+          <div class="section-title">
+            <h2>
+              SERVIÇOS PRESTADOS PELAS UBSs DE BOM JESUS/RN
+            </h2>
+            <p>Nossas Unidades Básicas de Saúde (UBSs) estão comprometidas em fornecer uma ampla gama de serviços de saúde para atender às necessidades da comunidade de Bom Jesus, RN. Cada UBS oferece serviços gerais essenciais, além de atendimentos especializados para cuidar da saúde integral de nossos cidadãos.
+            </p>
+          </div>
+        <div class="row">
+          {% for servicos in Servicos %}
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid" viewBox="0 0 16 16">
+                  <path d="M14.121 1.879a3 3 0 0 0-4.242 0L8.733 3.026l4.261 4.26 1.127-1.165a3 3 0 0 0 0-4.242ZM12.293 8 8.027 3.734 3.738 8.031 8 12.293 12.293 8Zm-5.006 4.994L3.03 8.737 1.879 9.88a3 3 0 0 0 4.241 4.24l.006-.006 1.16-1.121ZM2.679 7.676l6.492-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Z"/>
+                  <path d="M5.56 7.646a.5.5 0 1 1-.706.708.5.5 0 0 1 .707-.708Zm1.415-1.414a.5.5 0 1 1-.707.707.5.5 0 0 1 .707-.707ZM8.39 4.818a.5.5 0 1 1-.708.707.5.5 0 0 1 .707-.707Zm0 5.657a.5.5 0 1 1-.708.707.5.5 0 0 1 .707-.707ZM9.803 9.06a.5.5 0 1 1-.707.708.5.5 0 0 1 .707-.707Zm1.414-1.414a.5.5 0 1 1-.706.708.5.5 0 0 1 .707-.708ZM6.975 9.06a.5.5 0 1 1-.707.708.5.5 0 0 1 .707-.707ZM8.39 7.646a.5.5 0 1 1-.708.708.5.5 0 0 1 .707-.708Zm1.413-1.414a.5.5 0 1 1-.707.707.5.5 0 0 1 .707-.707Z"/>
+                </svg>
+              </div>
+              <h4 class="title">{{ servicos.servico }}</h4>
+              <p class="description">{{ servicos.descricao }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        <br><br><br><br>
+        <div class="section-title">
+          <h2>COMO SE CADASTRAR?</h2>
+          <p>Para acessar o SUS-CONNECTION, vá diretamente à página inicial. No canto superior direito da tela, clique no botão ou link "Login/Cadastro" para ser redirecionado à página correspondente. Se ainda não tiver uma conta, escolha a opção de cadastro e preencha o formulário com seu nome completo, email, senha segura e confirmação de senha. Após o preenchimento, revise cuidadosamente todas as informações e clique no botão "Início". Agora, estando cadastrado, utilize suas informações de login (nome e senha) na área correspondente sempre que precisar acessar sua conta.</p>
+
+      
+          <div class="passo">
+              <img src="{% static 'img/passo1.png' %}" alt="Passo 1">
+          </div>
+          <div class="passo">
+              <img src="{% static 'img/passo2.png' %}" alt="Passo 2">
+          </div>
+      </div>
+      </section>
+      <section id="appointment" class="appointment section-bg">
+        <div class="container" data-aos="fade-up">
+          
+  </main>
+        </div>
+      </section>
+    <section id="doctors" class="doctors section-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Desenvolvedores</h2>
+          <p>O "SUS Connection" foi idealizado e construído por uma equipe dedicada de apaixonados por tecnologia.
+            Conheça os rostos por trás dessa plataforma de gerenciamento!</p>
+        </div>
+        <div class="row minimo">
+          <div class="tamanho col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="member-img">
+                <img src="{% static 'img/camile.jpg' %}" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <h4>Camile Vitória</h4>
+                <a href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K1138212T4&tokenCaptchar=03AFcWeA4YM0DKIkiyZ6Fq5a0-e2MfWHmFRVlzFFIL5eX2is8lfQyKAJmtwZLN42TVSIaUe8ynQCcIpbCDsq-1-1CsnHLY_dUf-Iy0dI8tUiG40NZXBH10Z5ixFaA4YhUh67S4wTO3pHrZYrNtH91BsK8EqaztETx9FXlPVeaYZ3j9GAhToUmVWujNGmkV-rec0npxMXxbdqYSYFQ2mdCI6bICMu42Gdx2GfwfXt1pmcigitv3ehGL89CA5Wdp_GnO3f9sERnG42ucTdR-SHfCxw2r2d04AxTQMAWB3gN1oc8pQzJDCNkXW082We4DRoaBSCPPOZ1lt8gbFc5wkLpEtL4mnuDtRFtweQkN5nO8xv40_nAo0mRLFObsTUCFvCtLCi2TUo831UUhb8XOF81IettFFjFV08PtA1o_dOK-cxYEATfFDBWIuESNtujwK0hU7pFdsW85My_uEL3mnNMSIiRgX2KbvAOjUvpP39RX-GdlOpZCd8yxoVfoCK1ZF_eI5YoHgx3kiocdZ6OKbAdFTntyz8nUwz4CbfWw9PQ28i7Ck6esjjA5-2Y"> <span>Desenvolvedora</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="tamanho col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="200">
+              <div class="member-img">
+                <img src="{% static 'img/jailson.jpg' %}" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <h4>Jailson</h4>
+                <a href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K1798150Y6&tokenCaptchar=03AFcWeA63hrU4PepujUSoSPvxKLYMkT2dX9q4r9KxVURFe6DoAsM8zDC5C1BU6ITVoHZp6vN4u665qFH-0g9Dh2Tvyj4JdYoByGqJesokpQmhyYfmeFK0ya3sCn3myEsXBuLFHWgVd9R9nfn33agV6xvz59hLcIlIS8l6YpADzw3X3Q_4Te79o_Y0ar_Z99XCPxmQjEDynP79IZOeMFJvVPX2jx9gPdPz6Wk6ddVoteB7H54HcFUYiu_8hBVT7-rrAG2N9KA4DVCY0Io-F7kSnd5fP7ZYVqzED-Z9GGtjsmCSYbhzO11oAbZZbd8vQNoi2wQeiBQJfAnqdEzL7TOqRMq3JAf_k2noFjF7uvmQNTU-bSzxT0wj2jyL0a1xJ8edPp6pP9ZfrOi7XCodmgBAPw0kwtqKOetQPugPfAuOT6xg5W7XtfdRc_DGF34gHlERn4PaheJLRWSyXsnT9paK8UipWC75w2yLB_67Q_6qdw2m6KpA9O7WEmjacGaGcZTFeX0HL6JCPe7QHwtQMD_xLrWG9QUW0X0RNprCJ8BV4BSM6CO1QdjbSn5bQaxl2fkHG3KU1e8CRY58"> <span>Desenvolvedor</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="tamanho col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="300">
+              <div class="member-img">
+                <img src="{% static 'img/luiza.jpg' %}" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <h4>Maria Luiza</h4>
+                <a href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K1143619H7&tokenCaptchar=03AFcWeA63G15SwlVzoFK4j-zNc7MoznTD8Fs5mPv3_JpLi1oi_fe_Ac3FJ2Ymvu8FUihOscYUFTFDm9DgJKQ4-jBrz4LXRVti8Bh1dyoBErqHKU8p2YSpCpthQLuJLafcf7t3KWLQWnvibJ7RQfMf4BDGNHluXpp9PBamLtc0Zkc8so7KLBimLEzg6qHyq8ENXO13htmkBkymqe3NssHDBBzbbW_uoHhF4l3-FzWI6lyurgj_3tLm7AQTrpOzHblfVMcvyPucl6uONlYgsS_0Is0mzq_vGSMGJ9tpbQB6THfAutl_1syRi9Jb5xGGBtNbMuChGSHzkrbSxSuXvIcIl4vzCxEp9j6l8IE5RQPVK366KOlMDOYSxip-vgZtaCOoBtlC54s8FzXMQ2vg1MTOeqQ5j9GHYBbe4wYVVcFXM9tquCw9PfLIl3PI7FCz5i1GmS2wk_Hqebcr8oJmowNgCBWrLDqPf7tKPVZDEkPSBPPuILoHsTID8rpNY_9eVJaqWqEt0zB4aPKFJ9-9gy3JoCSPhxJ_ljr8d9y9tMSGEEjoTPVV00Evpkl6y6Xo7V_ny5iAxF2aXyiG"> <span>Desenvolvedora</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="tamanho col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="400">
+              <div class="member-img">
+                <img src="{% static 'img/fernanda.png' %}" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <h4>Fernanda Lígia</h4>
+                <a href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4201919Z6&tokenCaptchar=03AFcWeA4Ha2g6ufcL0Htibvvy-f6qmgU4anS4BL2fnWzVOWLc1v6EA2I_XlPFZkXPkydRmHM_5HAq_rY7P8a8WNHby9te5Qmf_Gu8Jz3y_Wf4TiZtnAT3x4-M_o3l2-E4s-1E5oywIHUTqX2JT1Vn0hnuVM4yQR91JRqt04N0vn48Gfg-ULVfdIFIKU9qLgzYKJW8aPsQyTFfacuXXrwOr43LOcD08orYT5ZYMohJEixvx0kTgYuF9bNai0sXttYIQ_fe6JyFPeyOVmdspR7pqMiJQqWmGVa5PndgKgVy0pb2yf3jwWL2iQ8eqVH0NUP3GTszb-d-JtjccKI0Mk8ZfkzL64qmzQbCBW6zkWHASlSsIewiL_XFZg7HlAp6zSUuUBlfWYvoVrCyzVj4Wg6WcdRB6_lQxGGBzfubiBnBwvUWl0zEN1mvbXFQW-Xd1UPX9l_PGI_szcBNExgzluT6WLhYDO7FFDekhfx88A8g97nZ6bB7jNobnQ3xsE-UZZb5ft7T97nonUlzzb93GI-woRnt97BdmjZs096LRptPgwZhAUn5s0UPGyk"><span>Orientadora</span></a> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<footer id="footer">
+  </div>
+      <div class="container">
+      <div class="copyright">
+        &copy; Instituto Federal do Rio Grande do Norte<strong>
+          <span>IFRN</span></strong>. 
+      </div>
+      <div class="credits">
+        Localização <a href="https://www.google.com.br/maps/place/IFRN+-+Campus+S%C3%A3o+Paulo+do+Potengi/@-5.8952253,-35.7548359,17z/data=!3m1!4b1!4m6!3m5!1s0x7b22feeeca6345f:0xc5f89e3bf5bffeba!8m2!3d-5.8952253!4d-35.7548359!16s%2Fg%2F11b6vdvps8?entry=ttu">IFRN</a><div class="footer-logo">
+        <img src="{% static 'img/ifrnlogo.png' %}" alt="IFRN Logo" style="max-width: 30px; height: auto;">
+      </div>
+      </div>
+    </div>
+  </footer>
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+  </svg></a>
+  <script src="{% static 'js/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/glightbox.min.js' %}"></script>
+  <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'js/validate.js' %}"></script>
+  <script src="{% static 'js_index/bootstrap.bundle.min.js.map' %}"></script>
+  <script src="{% static 'php_index/cantact.php' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html

@@ -1,0 +1,68 @@
+{% extends 'pagina_de_usuario.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Servico</title>
+    <link href="{% static 'img/ICON.png' %}" rel="icon">
+    <link href="{% static 'img/ICON.png' %}" rel="apple-touch-icon">
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'inicio' %}">
+        <img src="{% static 'img/ICON.png' %}" alt="logohospital" width="30" height="30"> SUS-CONNECTION</a>
+</nav>
+{% block 'dashboard2' %}
+    <main id="main" class="main">
+        <div class="container mt-4">
+            <br>
+            <h1 class="text-center">Cadastrar Serviços</h1>
+            <form  class="mt-4" method="POST" >
+                {% csrf_token %}
+                <div class="password-container" style="text-align: center;">
+                    <input type="text" name="servicos" placeholder="Serviços" style="width: 400px;">
+                    <span class="password-toggle" onclick="togglePasswordVisibility()">
+                        <i id="passwordIcon" class="fas fa-eye-slash"></i>
+                        <input type="submit" class="btn btn-primary" value="Cadastrar">
+                    <br>
+                    </span>
+                </div>
+            </form>
+            <br>
+            <h1 class="text-center">Lista de serviços registrados</h1>
+            <div class="table-responsive">
+                <table class="table table-striped" id="table-evento">
+                    <tr>
+                        <th >Nome</th>
+                        
+                    </tr>
+                    {% for servicos in servicos %}
+                        <tr>
+                            <td>{{servicos.servico}}</td>
+                            
+                        </tr>
+                    {% empty %}
+                    <tr>
+                        <td scope="3">Nenhum registro encontrado.</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="modal fade" id="modal-evento">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    </div>
+                </div>
+            </div>
+    </main>
+{% block 'noticias' %}
+{% endblock %}
+{% endblock %}
+{% block 'footer' %}
+{% endblock %}
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+</script>
+</html>

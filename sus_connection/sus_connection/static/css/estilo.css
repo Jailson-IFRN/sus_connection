@@ -1,0 +1,218 @@
+/* Global Box Sizing */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* HTML */
+html {
+  min-height: 100% !important;
+}
+
+/* Body */
+body {
+  background-image: url(../img/fundo.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+/* .titulo */
+/* .titulo */
+.titulo {
+  position: absolute;
+  left: 50%;
+  top: 3%;
+  transform: translateX(-50%);
+  font-family: 'leaguespartan-bold.ttf';
+  font-size: 5vw;
+  color: white;
+}
+
+/* .titulo2 */
+.titulo2 {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  font-size: 5vw;
+  font-family: 'GothamBold';
+  color: white;
+}
+
+/* .titulo3 */
+.titulo3 {
+  position: absolute;
+  left: 45%;
+  top: 37%;
+  transform: translateX(-50%);
+  font-size: 2.5vw;
+  font-family: 'GothamBold';
+  color: white;
+}
+
+
+/* #texto4 */
+#texto4 {
+  position: absolute;
+  left: 50%; /* Posicionando o texto no centro horizontal */
+  top: 77%; /* Posicionando o texto a 77% da distância do topo */
+  transform: translateX(-50%); /* Centralizando o texto na horizontal */
+  font-size: 1.5vw; /* Tornando o tamanho da fonte do texto responsivo (1.5% da largura da viewport) */
+  font-family: 'GothamBold';
+  color: white;
+}
+#texto5{
+  position: absolute;
+  left: 45.5%;
+  top: 95%;
+  font-size: 1vw;
+  font-family: 'GothamBold';
+  color: white;
+}
+
+/* #texto5 */
+
+
+/* #botaoDeUsuario */
+
+
+#botaoDeUsuario {
+  border: 2px solid #fff; /* Adicionando uma borda sólida para melhor visualização */
+  border-radius: 15px;
+  position: absolute;
+  opacity: 0.4;
+  width: 60%; /* Reduzindo a largura para 60% da largura do elemento pai */
+  max-width: 350px; /* Limitando a largura máxima para 300px */
+  height: 6vh; /* Definindo a altura como 6% da altura da viewport */
+  max-height: 40px; /* Limitando a altura máxima para 40px */
+  margin: 1% 0;
+  padding: 1%; /* Adicionando um pequeno padding para melhorar a interação em dispositivos de toque */
+  outline: none; /* Removendo a borda ao ser clicado/focado */
+  font-size: 2vw; /* Reduzindo o tamanho da fonte para 2% da largura da viewport */
+  left: 48%; /* Posicionando o botão no centro horizontal */
+  transform: translateX(-50%); /* Centralizando o botão na horizontal */
+  top: 45%; /* Posicionando o botão a 45% da distância do topo */
+}
+
+/* #botaoDeEmail */
+#botaoDeEmail{
+  border: 2px solid #fff; /* Adicionando uma borda sólida para melhor visualização */
+  border-radius: 15px;
+  position: absolute;
+  opacity: 0.4;
+  width: 60%; /* Reduzindo a largura para 60% da largura do elemento pai */
+  max-width: 350px; /* Limitando a largura máxima para 300px */
+  height: 6vh; /* Definindo a altura como 6% da altura da viewport */
+  max-height: 40px; /* Limitando a altura máxima para 40px */
+  margin: 1% 0;
+  padding: 1%; /* Adicionando um pequeno padding para melhorar a interação em dispositivos de toque */
+  outline: none; /* Removendo a borda ao ser clicado/focado */
+  font-size: 2vw; /* Reduzindo o tamanho da fonte para 2% da largura da viewport */
+  left: 48%; /* Posicionando o botão no centro horizontal */
+  transform: translateX(-50%); /* Centralizando o bot*/
+  top: 51%;
+}
+/* #botaoDeSenha */
+#botaoDeSenha {
+  border: 2px solid #fff; /* Adicionando uma borda sólida para melhor visualização */
+  border-radius: 15px;
+  position: absolute;
+  opacity: 0.4;
+  width: 60%; /* Reduzindo a largura para 60% da largura do elemento pai */
+  max-width: 350px; /* Limitando a largura máxima para 300px */
+  height: 6vh; /* Definindo a altura como 6% da altura da viewport */
+  max-height: 40px; /* Limitando a altura máxima para 40px */
+  margin: 1% 0;
+  padding: 1%; /* Adicionando um pequeno padding para melhorar a interação em dispositivos de toque */
+  outline: none; /* Removendo a borda ao ser clicado/focado */
+  font-size: 2vw; /* Reduzindo o tamanho da fonte para 2% da largura da viewport */
+  left: 48%; /* Posicionando o botão no centro horizontal */
+  transform: translateX(-50%); /* Centralizando o botão na horizontal */
+  top: 57%; /* Posicionando o botão a 55% da distância do topo */
+}
+
+/* #botaoDeConfirmarSenha */
+
+
+#botaoDeConfirmarSenha {
+  border: 2px solid #fff; /* Adicionando uma borda sólida para melhor visualização */
+  border-radius: 15px;
+  position: absolute;
+  opacity: 0.4;
+  width: 60%; /* Reduzindo a largura para 60% da largura do elemento pai */
+  max-width: 350px; /* Limitando a largura máxima para 300px */
+  height: 6vh; /* Definindo a altura como 6% da altura da viewport */
+  max-height: 40px; /* Limitando a altura máxima para 40px */
+  margin: 1% 0;
+  padding: 1%; /* Adicionando um pequeno padding para melhorar a interação em dispositivos de toque */
+  outline: none; /* Removendo a borda ao ser clicado/focado */
+  font-size: 2vw; /* Reduzindo o tamanho da fonte para 2% da largura da viewport */
+  left: 48%; /* Posicionando o botão no centro horizontal */
+  transform: translateX(-50%); /* Centralizando o botão na horizontal */
+  top: 63%; /* Posicionando o botão a 60% da distância do topo */
+}
+
+
+/* #botaoDeLembrar */
+#botaoDeLembrar {
+  position: absolute;
+  left: 45%; /* Posicionando o botão no centro horizontal */
+  top: 76.5%; /* Posicionando o botão a 76% da distância do topo */
+  transform: translateX(-50%); /* Centralizando o botão na horizontal */
+  font-size: 2vw; /* Tornando o tamanho da fonte do botão responsivo (2% da largura da viewport) */
+}
+
+#enviar {
+  border: 3px solid #fff; /* Adicionando uma borda sólida para melhor visualização */
+  color: rgb(59, 71, 239);
+  border-radius: 20px; /* Reduzindo o raio da borda para 10px */
+  position: absolute;
+  opacity: 1;
+  width: 60%; /* Reduzindo a largura para 60% da largura do elemento pai */
+  max-width: 360px; /* Limitando a largura máxima para 300px */
+  height: 6vh; /* Definindo a altura como 8% da altura da viewport */
+  max-height: 60px; /* Limitando a altura máxima para 60px */
+  /* Adicionando um pequeno padding para melhorar a interação em dispositivos de toque */
+  outline: none; /* Removendo a borda ao ser clicado/focado */
+  font-size: 3vw; /* Reduzindo o tamanho da fonte para 3% da largura da viewport */
+  left: 50%; /* Posicionando o botão no centro horizontal */
+  transform: translateX(-50%); /* Centralizando o botão na horizontal */
+  bottom: 5%; /* Posicionando o botão a 5% da distância do fundo */
+}
+
+
+
+
+
+
+
+
+
+
+/* .imagem */
+.imagem {
+  width: 20%; /* Definindo a largura como 20% do elemento pai */
+  max-width: 85px; /* Limitando a largura máxima para 100px */
+  height: auto; /* A altura será ajustada automaticamente para manter a proporção */
+  position: absolute;
+  left: 50%; /* Posicionando a imagem no centro horizontal */
+  top: 30%; /* Posicionando a imagem no centro vertical */
+  transform: translate(-50%, -50%); /* Centralizando a imagem tanto na horizontal quanto na vertical */
+}
+
+
+@media (max-width: 768px) {
+  .titulo,
+  .titulo2,
+  .titulo3 {
+    font-size: 7vw;
+  }
+  
+  
+  .imagem {
+    width: 30%;
+    }
+  }

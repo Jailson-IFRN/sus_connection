@@ -1,0 +1,528 @@
+{% load static %}
+{% load bootstrap_icons %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script src="{% static 'js/main.js' %}"></script>
+
+  <title>SUS - CONNECTION: ÁREA DO FUNCIONÁRIO</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/ICON.png' %}" rel="icon">
+  <link href="{% static 'img/ICON.png' %}" rel="apple-touch-icon">
+  <!-- <link href="{% static 'icons/bootstrap-icons.css' %}" rel="stylesheet"> -->
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-icons2.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-icons.min2.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-icons2.woff' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-icons2.woff2' %}" rel="stylesheet">
+  <link href="{% static 'css/boxicons.min2.css' %}" rel="stylesheet">
+  <link href="{% static 'css/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'css/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'css/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style2.css' %}" rel="stylesheet">
+  <link href="{% static 'css/animation2.css' %}" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/styleMain.css' %}" rel="stylesheet">
+  <link href="{% static 'css_pagina_user.css' %}" rel="stylesheet">
+  <link href="{% static 'js_area_user/style_area_user.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url 'areaDoUsuario' %}" class="logo d-flex align-items-center">
+        <img src="{% static 'img/ICON.PNG' %}" alt="">
+        <span class="d-none d-lg-block">Sus Connection</span>
+      </a>
+      
+    </div><!-- End Logo -->
+<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-list toggle-sidebar-btn" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+</svg>
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+          
+            <span class=" d-md-block dropdown-toggle ps-2">{{ request.user }}</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>{{ request.user }}</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            {% if user.groups.all.0.name == "funcionários" %}
+              <li>
+                {% for j in Users_date %}
+                  {% if j.user == request.user %}
+                    <a class="dropdown-item d-flex align-items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z"/>
+                      </svg>
+                      <span>{{ j.cargo }}</span>
+                    </a>
+                  {% endif %}
+                {% endfor %}
+              </li>
+            {% else %}
+              <li>
+                {% for j in usuarios2 %}
+                  {% if j.username == request.user %}
+                    <a class="dropdown-item d-flex align-items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+                      </svg>
+                      <span>{{ j.email }}</span>
+                    </a>
+                  {% endif %}
+                {% endfor %}
+              </li>
+            {% endif %}
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              {% for j in Users_date %}
+                {% if j.user == request.user %}
+                  <a class="dropdown-item d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hospital-fill" viewBox="0 0 16 16">
+                      <path d="M6 0a1 1 0 0 0-1 1v1a1 1 0 0 0-1 1v4H1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6v-2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V16h6a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-3V3a1 1 0 0 0-1-1V1a1 1 0 0 0-1-1zm2.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1h1ZM2.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 9.75v-.5A.25.25 0 0 1 2.25 9m0 2h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM13.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25"/>
+                    </svg>
+                    <span>{{ j.ubs.nome }}</span>
+                  </a>
+                {% endif %}
+              {% endfor %}
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            {% if user.groups.all.0.name == "funcionários" %}
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'cadastro-complementar' %}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+                    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
+                  </svg>
+                  <span>cadastro complementar</span>
+                </a>
+              </li>
+            {% endif %}
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              {% if request.user.is_authenticated %}
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}"><span class=" d-md-inline">SAIR</a>
+              {% endif %}
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+  
+  <!-- ======= Sidebar ======= -->
+  {% block 'dashboard' %}
+  <aside id="sidebar" class="sidebar">
+      {% if user.groups.all.0.name == "funcionários" %}
+          <ul class="sidebar-nav" id="sidebar-nav">
+            
+            <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-hospital" viewBox="0 0 16 16">
+                  <path d="M8.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1h1ZM13.25 9a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Zm.25 1.75a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5Zm-11-4a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5A.25.25 0 0 0 3 9.75v-.5A.25.25 0 0 0 2.75 9h-.5Zm0 2a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Z"/>
+                  <path d="M5 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 1 1v4h3a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1V1Zm2 14h2v-3H7v3Zm3 0h1V3H5v12h1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3Zm0-14H6v1h4V1Zm2 7v7h3V8h-3Zm-8 7V8H1v7h3Z"/>
+                </svg> 
+                <span>Gerenciar UBS </span>
+              </a>
+              <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href="{% url 'cadastrar-Ubs' %}">
+                    <i class="bi bi-circle-fill"></i><span>Cadastrar UBS</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'listar-Ubs' %}">
+                    <i class="bi bi-circle-fill"></i><span>UBS´s Cadastradas</span>
+                  </a>
+                </li>
+              </ul>
+            </li><!-- End Components Nav -->
+
+            <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#forms-nav-vacinas" data-bs-toggle="collapse" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-capsule" viewBox="0 0 16 16">
+                  <path d="M1.828 8.9 8.9 1.827a4 4 0 1 1 5.657 5.657l-7.07 7.071A4 4 0 1 1 1.827 8.9Zm9.128.771 2.893-2.893a3 3 0 1 0-4.243-4.242L6.713 5.429l4.243 4.242Z"/>
+                </svg>  
+                <span>Gerenciar vacinas</span>
+              </a>
+              <ul id="forms-nav-vacinas" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href="{% url 'cadastrar-vacinas' %}">
+                    <i class="bi bi-circle-fill"></i><span>Cadastrar disponibilidade de vacinas</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'listar-vacinas' %}">
+                    <i class="bi bi-circle-fill"></i><span>Vacinas Cadastradas</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " data-bs-target="#forms-nav-servicos" data-bs-toggle="collapse" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg> <span>Gerenciar Serviços das UBSs</span>
+              </a>
+              <ul id="forms-nav-servicos" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+                <li class="nav-item">
+                  <a href="{% url 'cadastrar-servico' %}">
+                    <i class="bi bi-circle-fill"></i><span>Cadastrar Serviços</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#" aria-expanded="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg> 
+                <span>Notícias/Informes das Unidades e dos Funcionários</span>
+              </a>
+                  <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+                    <li>
+                      <a href="{% url 'cadastrar-noticia' %}">
+                        
+                      <i class="bi bi-circle-fill"></i><span>Cadastrar Notícias ou Informes aos pacientes</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'listar-noticias' %}">
+                        <i class="bi bi-circle-fill"></i><span>Listagem de notícias</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+                      <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+                      <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+                    </svg>  <span>Comunicador</span>
+                    
+                  </a>
+                  <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                      <a href="{% url 'listar-duvida' %}">
+                        <i class="bi bi-circle-fill"></i><span>Listar dúvidas dos pacientes</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              
+            
+    {% else %}
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-hospital" viewBox="0 0 16 16">
+            <path d="M8.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1h1ZM13.25 9a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Zm.25 1.75a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5Zm-11-4a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5A.25.25 0 0 0 3 9.75v-.5A.25.25 0 0 0 2.75 9h-.5Zm0 2a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Z"/>
+            <path d="M5 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 1 1v4h3a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1V1Zm2 14h2v-3H7v3Zm3 0h1V3H5v12h1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3Zm0-14H6v1h4V1Zm2 7v7h3V8h-3Zm-8 7V8H1v7h3Z"/>
+          </svg> 
+          <span>Unidades de Saúde - BJ/RN</span>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'listar-Ubs' %}">
+              <span>Unidades Básicas de Saúde de Bom Jesus/RN</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-capsule" viewBox="0 0 16 16">
+            <path d="M1.828 8.9 8.9 1.827a4 4 0 1 1 5.657 5.657l-7.07 7.071A4 4 0 1 1 1.827 8.9Zm9.128.771 2.893-2.893a3 3 0 1 0-4.243-4.242L6.713 5.429l4.243 4.242Z"/>
+          </svg>  <span>Vacinas</span>
+          
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'listar-vacinas' %}">
+              <i class="bi bi-circle-fill"></i><span>Vacinas ofertadas pelas Unidades Básicas de Saúde</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+            <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+          </svg>  <span>Cartão do SUS</span>
+          
+        </a>
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'cadastrar-sus' %}">
+              <i class="bi bi-circle-fill"></i><span>Cadastrar cartão do SUS</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'sus-cadastrado' %}">
+              <i class="bi bi-circle-fill"></i><span>Cartão do SUS</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+            <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+          </svg>  <span>Comunicador</span>
+          
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'registrar-duvidas' %}">
+              <i class="bi bi-circle-fill"></i><span>Registrar dúvida</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+
+      </ul>
+
+    {% endif %}
+
+  </aside>
+    {% endblock %}
+
+{% block 'dashboard2' %}
+  <main id="main" class="main">
+  <section class="section dashboard">
+    <center><h2>UBS´S </h2></center>
+    {% if user.groups.all.0.name == "funcionários" %}
+
+        <div class="container">
+          
+          <div class="row">
+            <!-- Sales Card -->
+            {% for Ubs in UBS %}
+            <div class="col-xxl-4 col-md-6">
+                    <div class="card-body d-flex flex-column">
+                      <h5 class="card-title">{{ Ubs.nome }} <span>| {{ Ubs.rua }} </span></h5>
+                      <div class="d-flex align-items-center">
+                      </div>
+                      <div class="mt-auto d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary btn-sm me-2"> <a href="{% url 'editar-Ubs' Ubs.pk %}" style="color:aliceblue"> Editar </a> </font></button>
+                        <button type="button" class="btn btn-primary btn-sm me-2"> <a href="{% url 'excluir-Ubs' Ubs.pk %}" style="color:aliceblue"> Excluir </a></button>
+                        <button type="button" class="btn btn-primary btn-sm"><a href="{% url 'detalhes' Ubs.pk %}" style="color:aliceblue"> Visualizar </a></button>
+                      </div>
+                    </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+    {% else %}
+    
+        <div class="container">
+          <div class="row">
+            {% for Ubs in UBS %}
+            <div class="col-xxl-4 col-md-6">
+                    <div class="card-body d-flex flex-column">
+                      <h5 class="card-title">{{ Ubs.nome }} <span>| {{ Ubs.rua }} </span></h5>
+                      <div class="d-flex align-items-center">
+                      </div>
+                      <div class="mt-auto d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary btn-sm"><a href="{% url 'detalhes' Ubs.pk %}"><font  color="white"> Visualizar </font></a></button>
+                      </div>
+                    </div>
+              </div>
+            {% endfor %}
+          </div>
+          
+    
+    {% endif %}
+
+        </di>
+    </div>
+  </section>
+
+
+</main><!-- End #main -->  
+{% endblock %}
+
+{% block 'noticias' %}
+<section id="noticias">
+  <center><h2>NOTICIAS DAS UBS´S </h2></center>
+  <div class="containerNOT d-flex justify-content-center">
+    
+    <div class="swiper-wrapper row text-center">
+      
+    </div>
+    <div class="card-titleNOT">
+      <h2>Notícias</h2>
+    </div>
+    
+  
+  {% for i in Noticias %}
+    <div class="cardNOT">
+      <div class="dataNOT">Notícias - <time>{{ i.data }}</time></div>
+      <h2>{{ i.titulo }}</h2>
+      <div class="autorNOT">
+        <div class="img-containerNOT">
+          {% for j in Users_date %}
+            {% if j.user == i.usuario %}
+            <div class="imgNOT">
+              <img src="/media/{{ j.foto }}">
+            </div>
+            {% endif %}
+          {% endfor %}
+          
+        </div>
+        <div class="infoNOT">
+          <span>{{ i.usuario }}</span>
+          {% for j in Users_date %}
+            {% if j.user == i.usuario %}
+              {{ j.cargo }}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+        <div class="tagsNOT">
+          <a href="{% url 'lermais' i.id  %}">LER MAIS</a>
+        </div>
+      
+    </div>
+  
+  {% endfor %}
+</section>
+
+<section id="testimonials" class="testimonials  funcionario section dashboard">
+  <main id="main" class="main">
+          <div class="container">
+            <div class="row">
+    <div class="container" data-aos="fade-up">
+
+      <div class="swiper-wrapper row text-center">
+        <h2>FUNCIONÁRIOS DAS UBS´S </h2>
+      </div>
+
+
+      <div class="slide-container swiper row">
+        
+        <div class="slide-content">
+          
+            <div class="card-wrapper swiper-wrapper">
+              <div class="swiper-wrapper row">
+                {% for j in Users_date %}
+                  <div class="col-xxl-4 col-md-6 swiper-slide">
+                    <div class="card">
+                      <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                          <img src="/media/{{ j.foto }}" class="card-img" alt="">
+                        </div>
+                      </div>
+                      <div class="card-content">
+                        <h2 class="name"> {{ j.user }}</h2>
+                        <p class="description"> {{ j.cargo }} da UBS {{ j.ubs.nome }}</p>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+        </div>
+      </div>  
+    
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    
+      </div>
+    </div>
+    </div>
+          </div>
+  </main>
+  
+</section>
+{% endblock %}
+  {% block 'footer' %}
+    <footer id="footer" class="footer">
+      <div class="copyright">
+        &copy; IFRN <strong><span>Sus Connection</span></strong>.
+      </div>
+      <div class="credits">
+        Localização do <a href="https://www.google.com.br/maps/place/IFRN+-+Campus+S%C3%A3o+Paulo+do+Potengi/@-5.8952253,-35.7548359,17z/data=!3m1!4b1!4m6!3m5!1s0x7b22feeeca6345f:0xc5f89e3bf5bffeba!8m2!3d-5.8952253!4d-35.7548359!16s%2Fg%2F11b6vdvps8?entry=ttu">IFRN</a><div class="footer-logo">
+          <img src="{% static 'img/ifrnlogo.png' %}" alt="IFRN Logo" style="max-width: 30px; height: auto;">
+      </div>
+    </footer>
+  {% endblock %}
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+  </svg></a>
+
+  <script src="{% static 'js_area_user/apexcharts.min.js' %}"></script>
+  <script src="{% static 'js_area_user/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js_area_user/chart.umd.js' %}"></script>
+  <script src="{% static 'js_area_user/echarts.min.js' %}"></script>
+  <script src="{% static 'js_area_user/quill.min.js' %}"></script>
+  <script src="{% static 'js_area_user/tinymce.min.js' %}"></script>
+  <script src="{% static 'js_area_user/js.js' %}"></script>
+  <script src="{% static 'js_area_user/simple-datatables.js' %}"></script>
+  <script src="{% static 'js_area_user/main.js' %}"></script>
+
+</body>
+
+</html>
